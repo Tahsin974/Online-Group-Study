@@ -4,9 +4,14 @@ import './index.css'
 
 import { RouterProvider } from 'react-router-dom'
 import router from './Routes/Routes.jsx'
+import {NextUIProvider} from "@nextui-org/react";
+
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
+    <NextUIProvider>
     <RouterProvider router={router} />
+    </NextUIProvider>
+    
   </StrictMode>,
 )

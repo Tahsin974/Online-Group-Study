@@ -1,4 +1,4 @@
-import {Navbar as Menubar, NavbarBrand, NavbarMenuToggle, NavbarMenu, NavbarContent, NavbarItem, Link} from "@nextui-org/react";
+import {Navbar as Menubar, NavbarMenuToggle, NavbarMenu, NavbarContent, NavbarItem, Link} from "@nextui-org/react";
 import { useState } from "react";
 import img from '../../../assets/logo/online-study.png'
 
@@ -40,17 +40,17 @@ const Navbar = () => {
         
         <NavbarMenuToggle className="lg:hidden" aria-label={isMenuOpen ? "Close menu" : "Open menu"} />
       
-        <NavbarBrand className="lg:flex hidden" >
-          
-          <img src={img} alt="" className=" w-40" />
         
-        </NavbarBrand>
+          
+          <img src={img} alt="" className="lg:flex hidden w-40" />
+        
+      
       </NavbarContent>
-      <NavbarBrand className="lg:hidden flex" >
+      
           
-          <img src={img} alt="" className=" w-40" />
+          <img src={img} alt="" className="lg:hidden flex max-w-28" />
         
-        </NavbarBrand>
+      
 
 
       <NavbarContent className="hidden lg:flex gap-4 text-lg font-semibold  justify-center" >

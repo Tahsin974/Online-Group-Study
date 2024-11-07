@@ -37,9 +37,9 @@ const Navbar = () => {
       className="bg-neutral py-3 items-center"
     >
       <NavbarContent className=" justify-start text-gray-200" >
-        <div className="lg:hidden">
-        <NavbarMenuToggle aria-label={isMenuOpen ? "Close menu" : "Open menu"} />
-        </div>
+        
+        <NavbarMenuToggle className="lg:hidden" aria-label={isMenuOpen ? "Close menu" : "Open menu"} />
+      
         <NavbarBrand className="lg:flex hidden" >
           
           <img src={img} alt="" className=" w-40" />

@@ -62,12 +62,12 @@ const Navbar = () => {
       <NavbarContent justify="end">
       <NavbarItem>
       <Link>
-          <button className="btn  btn-outline text-cyan-400	   border-cyan-400 hover:bg-cyan-400 hover:border-cyan-400 hover:text-white  rounded-none">Login</button>
+          <button className="btn lg:btn-md md:btn-md btn-sm btn-outline text-cyan-400	   border-cyan-400 hover:bg-cyan-400 hover:border-cyan-400 hover:text-white  rounded-none">Login</button>
           </Link>
         </NavbarItem>
         <NavbarItem>
           <Link>
-          <button className="btn  bg-cyan-400  border-cyan-500 hover:bg-cyan-500 hover:border-cyan-500 text-white rounded-none">Register</button>
+          <button className="btn lg:btn-md md:btn-md btn-sm  bg-cyan-400  border-cyan-500 hover:bg-cyan-500 hover:border-cyan-500 text-white rounded-none">Register</button>
           </Link>
         </NavbarItem>
       </NavbarContent>

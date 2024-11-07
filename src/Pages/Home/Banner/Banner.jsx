@@ -16,7 +16,7 @@ import { Autoplay,Pagination } from 'swiper/modules';
 
 const Banner = () => {
     return (
-        <div>
+        <div className='min-w-screen '>
             <Swiper
         slidesPerView={1}
         spaceBetween={30}
@@ -41,7 +41,7 @@ const Banner = () => {
             Learn, Share, Succeed with Study Buddies
             </h1>
             <p>
-            <q>Unlock the power of collaboration with Study Buddies, your ultimate online study platform. Connect with peers from around the globe, share knowledge, and achieve academic excellence together. Our platform is designed to make learning interactive and fun.</q>
+            <q>Unlock the power of collaboration with Study Buddies. Connect with peers from around the globe, share knowledge.Our platform is designed to make learning interactive and fun.</q>
             </p>
             <div className="flex space-x-3">
               <button className="btn lg:btn-md md:btn-md btn-sm btn-outline  border-cyan-500 hover:bg-cyan-500 hover:border-cyan-500 text-cyan-400  hover:text-white ">
@@ -61,7 +61,7 @@ const Banner = () => {
             Learn, Share, Succeed with Study Buddies
             </h1>
             <p>
-            <q>Unlock the power of collaboration with Study Buddies, your ultimate online study platform. Connect with peers from around the globe, share knowledge, and achieve academic excellence together. Our platform is designed to make learning interactive and fun.</q>
+            <q>Unlock the power of collaboration with Study Buddies. Connect with peers from around the globe, share knowledge.Our platform is designed to make learning interactive and fun.</q>
             </p>
             <div className="flex space-x-3">
               <button className="btn lg:btn-md md:btn-md btn-sm btn-outline  border-cyan-500 hover:bg-cyan-500 hover:border-cyan-500 text-cyan-400  hover:text-white ">
@@ -81,7 +81,7 @@ const Banner = () => {
             Learn, Share, Succeed with Study Buddies
             </h1>
             <p>
-            <q>Unlock the power of collaboration with Study Buddies, your ultimate online study platform. Connect with peers from around the globe, share knowledge, and achieve academic excellence together. Our platform is designed to make learning interactive and fun.</q>
+            <q>Unlock the power of collaboration with Study Buddies. Connect with peers from around the globe, share knowledge.Our platform is designed to make learning interactive and fun.</q>
             </p>
             <div className="flex space-x-3">
               <button className="btn lg:btn-md md:btn-md btn-sm btn-outline  border-cyan-500 hover:bg-cyan-500 hover:border-cyan-500 text-cyan-400  hover:text-white ">
@@ -101,7 +101,7 @@ const Banner = () => {
             Learn, Share, Succeed with Study Buddies
             </h1>
             <p>
-            <q>Unlock the power of collaboration with Study Buddies, your ultimate online study platform. Connect with peers from around the globe, share knowledge, and achieve academic excellence together. Our platform is designed to make learning interactive and fun.</q>
+            <q>Unlock the power of collaboration with Study Buddies. Connect with peers from around the globe, share knowledge.Our platform is designed to make learning interactive and fun.</q>
             </p>
             <div className="flex space-x-3">
               <button className="btn lg:btn-md md:btn-md btn-sm btn-outline  border-cyan-500 hover:bg-cyan-500 hover:border-cyan-500 text-cyan-400  hover:text-white ">
@@ -121,7 +121,7 @@ const Banner = () => {
             Learn, Share, Succeed with Study Buddies
             </h1>
             <p>
-            <q>Unlock the power of collaboration with Study Buddies, your ultimate online study platform. Connect with peers from around the globe, share knowledge, and achieve academic excellence together. Our platform is designed to make learning interactive and fun.</q>
+            <q>Unlock the power of collaboration with Study Buddies. Connect with peers from around the globe, share knowledge.Our platform is designed to make learning interactive and fun.</q>
             </p>
             <div className="flex space-x-3">
               <button className="btn lg:btn-md md:btn-md btn-sm btn-outline  border-cyan-500 hover:bg-cyan-500 hover:border-cyan-500 text-cyan-400  hover:text-white ">

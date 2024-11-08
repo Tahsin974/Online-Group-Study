@@ -1,0 +1,50 @@
+[
+      {
+        "id": 1,
+        "name": "User Registration and Authentication",
+        "description": "Secure registration and login system for users to create accounts, log in, and manage their profiles.",
+        "img": "https://i.ibb.co.com/jLthRN6/registration.jpg"
+      },
+      {
+        "id": 2,
+        "name": "Friend System",
+        "description": "Every registered user is automatically considered a friend of others.",
+        "img": "https://i.ibb.co.com/Jx16fCz/friend-System.jpg"
+      },
+      {
+        "id": 3,
+        "name": "Assignment Creation and Management",
+        "description": "Users can create new assignments, set deadlines, and upload relevant materials.",
+        "img": "https://i.ibb.co.com/ByP7Qp5/assignment-create.jpg"
+      },
+      {
+        "id": 4,
+        "name": "Assignment Submission",
+        "description": "Users can submit their completed assignments before the deadline.",
+        "img": "https://i.ibb.co.com/T1Bt8MD/assignment-submit.jpg"
+      },
+      {
+        "id": 5,
+        "name": "Grading System",
+        "description": "Users can review and grade their friends’ assignments.",
+        "img": "https://i.ibb.co.com/G2tqJk1/grading-System.jpg"
+      },
+      
+      {
+        "id": 6,
+        "name": "Notification System",
+        "description": "Automated notifications for important events such as new assignments, deadlines, and grades.",
+        "img": "https://i.ibb.co.com/P5WGg8T/notification-System.jpg"
+      }
+    ]
+
+
+
+
+    
+
+
+
+
+
+  

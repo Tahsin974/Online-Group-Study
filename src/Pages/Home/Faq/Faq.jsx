@@ -7,7 +7,7 @@ const Faq = () => {
   <div className="hero-content flex-col lg:flex-row">
     <img
       src={FAQ}
-      className='lg:max-w-lg md:max-w-lg max-w-sm'
+      className='lg:max-w-lg md:max-w-lg sm:max-w-sm max-w-xs'
        />
     <div className='space-y-4'>
     <div className="collapse collapse-plus bg-gray-200  ">

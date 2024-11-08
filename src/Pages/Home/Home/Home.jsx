@@ -9,7 +9,7 @@ const Home = () => {
         <div className="min-w-screen">
             <Navbar></Navbar>
             <Banner></Banner>
-            <div className="px-5">
+            <div className="lg:px-5 md:px-5 sm:px-2">
             <Features></Features>
             <Faq></Faq>
             </div>

@@ -1,4 +1,4 @@
-import FAQ from '../../../assets/logo/FAQ.jpg'
+import FAQ from '../../../assets/images/FAQ.jpg'
 const Faq = () => {
   return (
     <div className="my-32 space-y-11">

@@ -3,8 +3,34 @@ import img from '../../assets/images/login.png'
 import useFirebase from '../../Hooks/useFirebase';
 import { Link, useNavigate } from 'react-router-dom';
 const Registration = () => {
-    const {googleSignUp,setUser} = useFirebase();
+    const {googleSignUp,setUser,createUser,setUserName} = useFirebase();
+ 
     const navigate = useNavigate();
+
+    const handleForm = e =>{
+      e.preventDefault();
+      const form = e.target;
+      const userName = form.name.value;
+      const userEmail = form.email.value;
+      const userPassword = form.password.value;
+      
+
+      
+      
+      createUser(userEmail,userPassword)
+      .then((userCredential) => {
+        // Signed up 
+        const user = userCredential.user;
+        console.log(user)
+        setUserName(userName)
+        setUser(user)
+        navigate('/home')
+        
+      })
+     }
+
+
+    // google sign up
     const handleGoogleSignUp = () =>{
         googleSignUp()
         .then((result) => {
@@ -14,6 +40,8 @@ const Registration = () => {
             
           })
     }
+
+    
     return (
         <div>
       <div className="hero bg-white min-h-screen">
@@ -24,8 +52,20 @@ const Registration = () => {
       className="lg:max-w-xl md:max-w-lg sm:max-w-sm max-w-xs" />
         </div>
           <div className="card bg-white w-full max-w-sm shrink-0 shadow-2xl">
-            <form className="card-body">
+            <form onSubmit={handleForm} className="card-body">
             <h1 className="text-2xl font-semibold text-center">Register now!</h1>
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Name</span>
+                </label>
+                <input
+                  type="text"
+                  placeholder="name"
+                  name="name"
+                  className="input input-bordered bg-white text-black"
+                  required
+                />
+              </div>
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Email</span>
@@ -33,7 +73,8 @@ const Registration = () => {
                 <input
                   type="email"
                   placeholder="email"
-                  className="input input-bordered"
+                  name="email"
+                  className="input input-bordered bg-white text-black"
                   required
                 />
               </div>
@@ -44,7 +85,8 @@ const Registration = () => {
                 <input
                   type="password"
                   placeholder="password"
-                  className="input input-bordered"
+                  name="password"
+                  className="input input-bordered bg-white text-black"
                   required
                 />
                 <label className="label">

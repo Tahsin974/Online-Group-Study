@@ -70,7 +70,7 @@ const Navbar = () => {
 
         <img src={img} alt="" className="lg:hidden flex max-w-28" />
 
-        <NavbarContent className="hidden lg:flex gap-4 text-lg font-semibold  justify-center">
+        <NavbarContent className="hidden lg:flex gap-4 text-lg font-semibold  justify-center ">
           {menuItems}
         </NavbarContent>
 
@@ -90,10 +90,10 @@ const Navbar = () => {
           <DropdownMenu aria-label="Profile Actions" variant="flat">
             <DropdownItem key="profile" className="h-14 gap-2">
               <p className="font-semibold">Signed in as</p>
-              <p className="font-semibold">{user?.displayName}</p>
+              <p className="font-semibold">{user?.email}</p>
             </DropdownItem>
             <DropdownItem >
-            my attempted assignments
+            My Attempted Assignments
             </DropdownItem>
             
             <DropdownItem >

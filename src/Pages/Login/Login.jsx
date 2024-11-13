@@ -3,8 +3,22 @@ import img from '../../assets/images/login.png'
 import useFirebase from '../../Hooks/useFirebase';
 import { Link, useNavigate } from 'react-router-dom';
 const Login = () => {
-    const {googleSignUp,setUser} = useFirebase();
+    const {googleSignUp,setUser,userLogin} = useFirebase();
     const navigate = useNavigate();
+    const handleLogin = (e) =>{
+      e.preventDefault();
+      const form = e.target;
+      const userEmail = form.email.value;
+      const userPassword = form.password.value;
+      userLogin(userEmail,userPassword)
+      .then((userCredential) => {
+        // Signed in 
+        const user = userCredential.user;
+        // ...
+        setUser(user)
+        navigate('/home')
+      })
+    }
     const handleGoogleSignUp = () =>{
         googleSignUp()
         .then((result) => {
@@ -25,7 +39,7 @@ const Login = () => {
       className="lg:max-w-xl md:max-w-lg sm:max-w-sm max-w-xs" />
         </div>
           <div className="card bg-white w-full max-w-sm shrink-0 shadow-2xl">
-            <form className="card-body">
+            <form onSubmit={handleLogin} className="card-body">
             <h1 className="text-2xl font-semibold text-center">Login now!</h1>
               <div className="form-control">
                 <label className="label">
@@ -34,7 +48,8 @@ const Login = () => {
                 <input
                   type="email"
                   placeholder="email"
-                  className="input input-bordered"
+                  name="email"
+                  className="input input-bordered bg-white text-black"
                   required
                 />
               </div>
@@ -45,7 +60,8 @@ const Login = () => {
                 <input
                   type="password"
                   placeholder="password"
-                  className="input input-bordered"
+                  name="password"
+                  className="input input-bordered bg-white text-black"
                   required
                 />
                 <label className="label">

@@ -23,15 +23,15 @@ const Navbar = () => {
   const menuItems = (
     <>
       <NavbarItem>
-        <Link  className="text-gray-200 cursor-pointer">Home</Link>
+        <Link to='/' className="text-gray-200 cursor-pointer">Home</Link>
       </NavbarItem>
       <NavbarItem>
-        <Link className="text-gray-200 cursor-pointer">Assignments</Link>
+        <Link to='/assignments' className="text-gray-200 cursor-pointer">Assignments</Link>
       </NavbarItem>
       {
         user?.email ? <>
         <NavbarItem>
-        <Link className="text-gray-200 cursor-pointer">Create assignments</Link>
+        <Link to='/create-assignment' className="text-gray-200 cursor-pointer">Create assignments</Link>
       </NavbarItem>
       <NavbarItem>
         <Link className="text-gray-200 cursor-pointer">
@@ -88,8 +88,8 @@ const Navbar = () => {
             />
           </DropdownTrigger>
           <DropdownMenu aria-label="Profile Actions" variant="flat">
-            <DropdownItem key="profile" className="h-14 gap-2">
-              <p className="font-semibold">Signed in as</p>
+            <DropdownItem  className="h-14 gap-2 ">
+              <p className="font-semibold">{user?.displayName}</p>
               <p className="font-semibold">{user?.email}</p>
             </DropdownItem>
             <DropdownItem >

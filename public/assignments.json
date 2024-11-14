@@ -1,0 +1,65 @@
+[
+      {
+        "id":"01",
+        "title": "Mathematics: Calculus Problems",
+        "description": "Solve the given calculus problems including derivatives, integrals, and limits. Show all steps for each solution.",
+        "marks": 30,
+        "thumbnailImageURL": "https://i.ibb.co.com/Hzfjxvg/calculas-problems.jpg",
+        "difficultyLevel": "hard",
+        "date": "2024-11-20"
+      },
+      {
+        "id":"02",
+        "title": "Biology: Cellular Respiration",
+        "description": "Write a detailed report on the process of cellular respiration, including its stages and significance in living organisms.",
+        "marks": 25,
+        "thumbnailImageURL": "https://i.ibb.co.com/WgSCytz/cellular-respiration.jpg",
+        "difficultyLevel": "medium",
+        "date": "2024-11-22"
+      },
+      {
+        "id":"03",
+        "title": "History: The Industrial Revolution",
+        "description": "Discuss the causes and effects of the Industrial Revolution. Include key figures and technological advancements.",
+        "marks": 20,
+        "thumbnailImageURL": "https://i.ibb.co.com/YBy73TF/industrial-revolution.jpg",
+        "difficultyLevel": "easy",
+        "date": "2024-11-25"
+      },
+      {
+        "id":"04",
+        "title": "Physics: Newton's Laws of Motion",
+        "description": "Conduct experiments to demonstrate Newton's three laws of motion. Document your methods, observations, and conclusions.",
+        "marks": 35,
+        "thumbnailImageURL": "https://i.ibb.co.com/zRhFkjd/newton-s-laws-of-motion.jpg",
+        "difficultyLevel": "medium",
+        "date": "2024-11-28"
+      },
+      {
+        "id":"05",
+        "title": "Literature: Shakespearean Analysis",
+        "description": "Analyze the themes, characters, and plot of a chosen Shakespearean play. Provide textual evidence to support your analysis.",
+        "marks": 40,
+        "thumbnailImageURL": "https://i.ibb.co.com/jW4BTkt/shakespearean-analysis.jpg",
+        "difficultyLevel": "hard",
+        "date": "2024-12-01"
+      },
+      {
+        "id":"06",
+        "title": "Chemistry: Chemical Reactions",
+        "description": "Perform a series of chemical reactions and document the reactants, products, and reaction conditions.",
+        "marks": 50,
+        "thumbnailImageURL": "https://i.ibb.co.com/PhLbYyy/chemical-reactions.jpg",
+        "difficultyLevel": "hard",
+        "date": "2024-12-05"
+      }
+    ]
+
+
+    
+
+
+
+
+
+  

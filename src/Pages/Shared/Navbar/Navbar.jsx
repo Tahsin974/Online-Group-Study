@@ -6,52 +6,60 @@ import {
   NavbarItem,
   DropdownItem,
   DropdownMenu,
-  Avatar,
   DropdownTrigger,
   Dropdown,
+  User,
 } from "@nextui-org/react";
 import { useState } from "react";
 import img from "../../../assets/logo/online-study.png";
 import { Link } from "react-router-dom";
 import useFirebase from "../../../Hooks/useFirebase";
-import userImg from '../../../assets/images/user.png'
+
 
 const Navbar = () => {
-  const {user,logOut,setUser} = useFirebase();
+  const { user, logOut, setUser } = useFirebase();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const menuItems = (
     <>
       <NavbarItem>
-        <Link to='/' className="text-gray-200 cursor-pointer">Home</Link>
-      </NavbarItem>
-      <NavbarItem>
-        <Link to='/assignments' className="text-gray-200 cursor-pointer">Assignments</Link>
-      </NavbarItem>
-      {
-        user?.email ? <>
-        <NavbarItem>
-        <Link to='/create-assignment' className="text-gray-200 cursor-pointer">Create assignments</Link>
-      </NavbarItem>
-      <NavbarItem>
-        <Link className="text-gray-200 cursor-pointer">
-          Pending assignments
+        <Link to="/" className="text-gray-200 cursor-pointer">
+          Home
         </Link>
       </NavbarItem>
+      <NavbarItem>
+        <Link to="/assignments" className="text-gray-200 cursor-pointer">
+          Assignments
+        </Link>
+      </NavbarItem>
+      {user?.email ? (
+        <>
+          <NavbarItem>
+            <Link
+              to="/create-assignment"
+              className="text-gray-200 cursor-pointer"
+            >
+              Create assignments
+            </Link>
+          </NavbarItem>
+          <NavbarItem>
+            <Link className="text-gray-200 cursor-pointer">
+              Pending assignments
+            </Link>
+          </NavbarItem>
         </>
-        :
+      ) : (
         <></>
-      }
+      )}
     </>
   );
 
-  const handleLogOut = () =>{
-    logOut()
-    .then(() => {
-      setUser({})
-    })
-  }
-  console.log(user)
+  const handleLogOut = () => {
+    logOut().then(() => {
+      setUser({});
+    });
+  };
+  console.log(user);
   return (
     <div>
       <Menubar
@@ -74,56 +82,53 @@ const Navbar = () => {
           {menuItems}
         </NavbarContent>
 
-        {
-          user?.email ? 
+        {user?.email ? (
           <NavbarContent as="div" justify="end">
-        <Dropdown placement="bottom-end" className="bg-white">
-          <DropdownTrigger>
-            <Avatar
-              
-              as="button"
-              className="transition-transform"
-              size="lg"
-              src={userImg}
-            />
-          </DropdownTrigger>
-          <DropdownMenu aria-label="Profile Actions" variant="flat">
-            <DropdownItem  className="h-14 gap-2 ">
-              <p className="font-semibold">{user?.displayName}</p>
-              <p className="font-semibold">{user?.email}</p>
-            </DropdownItem>
-            <DropdownItem >
-            My Attempted Assignments
-            </DropdownItem>
-            
-            <DropdownItem >
-              <Link onClick={handleLogOut}>
-              Log Out</Link>
-            </DropdownItem>
-          </DropdownMenu>
-        </Dropdown>
-      </NavbarContent>
-          
-          
-          :
+            <Dropdown placement="bottom-end" className="bg-white">
+              <DropdownTrigger>
+                <User
+                as="button"
+                className="text-white"
+                  name={user?.displayName}
+                  description={user?.email}
+                  avatarProps={{
+                    src: "https://avatars.githubusercontent.com/u/30373425?v=4",
+                  }}
+                />
+                {/* <Avatar
+                  as="button"
+                  className="transition-transform"
+                  size="lg"
+                  src={userImg}
+                /> */}
+              </DropdownTrigger>
+              <DropdownMenu aria-label="Profile Actions" variant="flat">
+                <DropdownItem>My Attempted Assignments</DropdownItem>
 
+                <DropdownItem>
+                  <Link onClick={handleLogOut}>Log Out</Link>
+                </DropdownItem>
+              </DropdownMenu>
+            </Dropdown>
+          </NavbarContent>
+        ) : (
           <NavbarContent justify="end">
-          <NavbarItem>
-            <Link to="/login">
-              <button className="btn lg:btn-md md:btn-md sm:btn-sm btn-xs btn-outline text-cyan-400	   border-cyan-400 hover:bg-cyan-400 hover:border-cyan-400 hover:text-white  rounded-none">
-                Login
-              </button>
-            </Link>
-          </NavbarItem>
-          <NavbarItem>
-            <Link to='/registration'>
-              <button className="btn lg:btn-md md:btn-md sm:btn-sm btn-xs bg-cyan-400  border-cyan-500 hover:bg-cyan-500 hover:border-cyan-500 text-white rounded-none">
-                Register
-              </button>
-            </Link>
-          </NavbarItem>
-        </NavbarContent>
-        }
+            <NavbarItem>
+              <Link to="/login">
+                <button className="btn lg:btn-md md:btn-md sm:btn-sm btn-xs btn-outline text-cyan-400	   border-cyan-400 hover:bg-cyan-400 hover:border-cyan-400 hover:text-white  rounded-none">
+                  Login
+                </button>
+              </Link>
+            </NavbarItem>
+            <NavbarItem>
+              <Link to="/registration">
+                <button className="btn lg:btn-md md:btn-md sm:btn-sm btn-xs bg-cyan-400  border-cyan-500 hover:bg-cyan-500 hover:border-cyan-500 text-white rounded-none">
+                  Register
+                </button>
+              </Link>
+            </NavbarItem>
+          </NavbarContent>
+        )}
 
         <NavbarMenu className="bg-neutral  text-lg font-semibold py-6">
           {menuItems}
@@ -134,8 +139,6 @@ const Navbar = () => {
 };
 
 export default Navbar;
-
-
 
 /* 
 <NavbarContent as="div" justify="end">

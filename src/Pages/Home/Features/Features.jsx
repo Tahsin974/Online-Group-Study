@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import FeatureCard from "./FeatureCard";
+import axios from "axios";
 
 const Features = () => {
     const [features,setFeatures] = useState([]);
+    const url = "./features.json"
     useEffect(()=>{
-        fetch('/features.json')
-        .then(res => res.json())
-        .then(result => setFeatures(result))
+        axios.get(url)
+        .then(res => setFeatures(res.data));
     },[])
     return (
         <div className="min-w-screen min-h-screen my-32 space-y-14">

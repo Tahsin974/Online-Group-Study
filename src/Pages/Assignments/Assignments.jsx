@@ -6,9 +6,9 @@ import AssignmentCard from "./AssignmentCard";
 const Assignments = () => {
   const [assignments, setAssignments] = useState([]);
   const [displayAssignments,setDisplayAssignments] = useState([])
-  const url = "./assignments.json";
+  const url = "http://localhost:5000";
   useEffect(() => {
-    axios.get(url).then((res) => {
+    axios.get(`${url}/assignments`).then((res) => {
         setDisplayAssignments(res.data)
         setAssignments(res.data)});
   }, []);

@@ -52,14 +52,14 @@ const useFirebase = () => {
   };
 
   useEffect(() => {
-    const unSubscribed = () => onAuthStateChanged(auth, (user) => {
+    const unSubscribed = onAuthStateChanged(auth, (user) => {
       if (user) {
         setUser(user);
       }
     });
 
-    return unSubscribed;
-  }, [auth]);
+    return () => unSubscribed;
+  }, []);
 
   return {
     googleSignUp,

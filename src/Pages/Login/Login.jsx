@@ -1,8 +1,19 @@
 import { FcGoogle } from 'react-icons/fc';
 import img from '../../assets/images/login.png'
 import useFirebase from '../../Hooks/useFirebase';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { HiMiniEyeSlash } from 'react-icons/hi2';
+import { TbEyeFilled } from 'react-icons/tb';
 const Login = () => {
+  // eye icon toggle
+  const [isVisible, setIsVisible] = useState(false);
+
+  const toggleVisibility = () => setIsVisible(!isVisible);
+
+  const location = useLocation()
+  console.log(location)
+
     const {googleSignUp,setUser,userLogin} = useFirebase();
     const navigate = useNavigate();
     const handleLogin = (e) =>{
@@ -14,9 +25,10 @@ const Login = () => {
       .then((userCredential) => {
         // Signed in 
         const user = userCredential.user;
+        console.log(user)
         // ...
         setUser(user)
-        navigate('/home')
+        navigate(location.state ? location.state : '/home')
       })
     }
     const handleGoogleSignUp = () =>{
@@ -57,13 +69,27 @@ const Login = () => {
                 <label className="label">
                   <span className="label-text">Password</span>
                 </label>
-                <input
-                  type="password"
-                  placeholder="password"
-                  name="password"
-                  className="input input-bordered bg-white text-black"
-                  required
-                />
+                <div className="flex relative items-center">
+                  <input
+                    type={isVisible ? "text" : "password"}
+                    placeholder="password"
+                    className="input input-bordered w-[100%]"
+                    name="password"
+                    required
+                  />
+                  <button
+                    className="focus:outline-none absolute right-3 "
+                    type="button"
+                    onClick={toggleVisibility}
+                    aria-label="toggle password visibility"
+                  >
+                    {isVisible ? (
+                      <HiMiniEyeSlash className="text-2xl text-default-400 pointer-events-none" />
+                    ) : (
+                      <TbEyeFilled className="text-2xl text-default-400 pointer-events-none" />
+                    )}
+                  </button>
+                </div>
                 <label className="label">
                   <Link to='/registration' className="label-text-alt link link-hover">
                     Not Registered?
@@ -75,7 +101,7 @@ const Login = () => {
               </div>
               <div className="form-control mt-6">
                 <button onClick={handleGoogleSignUp} className="btn btn-outline   "><FcGoogle className='text-lg'/>
-                 Sign Up With Google</button>
+                 Continue With Google</button>
               </div>
             </form>
           </div>

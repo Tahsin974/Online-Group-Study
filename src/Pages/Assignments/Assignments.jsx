@@ -13,9 +13,9 @@ const Assignments = () => {
         setAssignments(res.data)});
   }, []);
 
-  const easy = assignments.filter(assignment => assignment.difficultyLevel == 'easy')
-  const hard = assignments.filter(assignment => assignment.difficultyLevel == 'hard')
-  const medium = assignments.filter(assignment => assignment.difficultyLevel == 'medium')
+  const easy = assignments.filter(assignment => assignment.difficultyLevel.toLowerCase() == 'easy')
+  const hard = assignments.filter(assignment => assignment.difficultyLevel.toLowerCase() == 'hard')
+  const medium = assignments.filter(assignment => assignment.difficultyLevel.toLowerCase() == 'medium')
   
   return (
     <div className="min-w-screen min-h-screen my-12 lg:px-5 md:px-5 sm:px-2 space-y-14 ">
@@ -30,7 +30,7 @@ const Assignments = () => {
       <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4 justify-items-center">
         {displayAssignments.map((assignment) => (
           <AssignmentCard
-            key={assignment.id}
+            key={assignment._id}
             assignment={assignment}
           ></AssignmentCard>
         ))}

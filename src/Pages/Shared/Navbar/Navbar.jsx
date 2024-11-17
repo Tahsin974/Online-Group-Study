@@ -54,12 +54,13 @@ const Navbar = () => {
     </>
   );
 
-  const handleLogOut = () => {
+  const handleLogOut = (e) => {
+    e.preventDefault()
     logOut().then(() => {
-      setUser({});
+      setUser();
     });
   };
-  console.log(user);
+  
   return (
     <div>
       <Menubar
@@ -84,13 +85,13 @@ const Navbar = () => {
 
         {user?.email ? (
           <NavbarContent as="div" justify="end">
-            <Dropdown placement="bottom-end" className="bg-white">
+            <Dropdown placement="bottom-end" className="bg-white ">
               <DropdownTrigger>
                 <User
                 as="button"
-                className="text-white"
-                  name={user?.displayName}
-                  description={user?.email}
+                className="text-white text-xl"
+                  name={user.displayName}
+                 
                   avatarProps={{
                     src: "https://avatars.githubusercontent.com/u/30373425?v=4",
                   }}
@@ -102,11 +103,13 @@ const Navbar = () => {
                   src={userImg}
                 /> */}
               </DropdownTrigger>
+              
               <DropdownMenu aria-label="Profile Actions" variant="flat">
+              
                 <DropdownItem>My Attempted Assignments</DropdownItem>
 
                 <DropdownItem>
-                  <Link onClick={handleLogOut}>Log Out</Link>
+                  <Link onClick={handleLogOut} className="hover:text-red-500">Log Out</Link>
                 </DropdownItem>
               </DropdownMenu>
             </Dropdown>

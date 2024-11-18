@@ -1,6 +1,8 @@
 import axios from "axios";
 import useFirebase from "../../Hooks/useFirebase";
 import { useNavigate } from "react-router-dom";
+import Swal from 'sweetalert2'
+
 
 
 const CreateAssignment = () => {
@@ -25,7 +27,17 @@ const CreateAssignment = () => {
     axios.post(`${url}/new-assignment`,newAssignment)
     .then(res => {
       console.log(res.data)
-      navigate('/assignments')
+      
+      Swal.fire({
+        title: "Assignment Created Successfully",
+        icon: "success"
+      }).then((result) => {
+        
+        if (result.isConfirmed) {
+          navigate('/assignments')
+        }
+      });
+      
     })
     
     
@@ -35,7 +47,7 @@ const CreateAssignment = () => {
     <div className="flex justify-center items-center min-h-screen min-w-screen py-14">
       
       <div className="space-y-14">
-      <h1 className="lg:text-3xl md:text-3xl text-2xl text-center font-semibold border-b-2 pb-4">Create A New Assignment</h1>
+      <h1 className="lg:text-3xl md:text-3xl text-2xl text-center font-semibold  pb-4">Create A New Assignment</h1>
       <div className="card bg-white shrink-0 shadow-2xl">
         <form onSubmit={handleForm} className="card-body grid grid-cols-2 gap-4">
           <div className="form-control">

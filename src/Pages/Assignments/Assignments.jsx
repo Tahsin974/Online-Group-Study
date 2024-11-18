@@ -1,21 +1,50 @@
-import axios from "axios";
-import { useEffect } from "react";
-import { useState } from "react";
+
 import AssignmentCard from "./AssignmentCard";
+import Swal from "sweetalert2";
+import useAssignments from "../../Hooks/useAssignments";
+import axios from "axios";
 
 const Assignments = () => {
-  const [assignments, setAssignments] = useState([]);
-  const [displayAssignments,setDisplayAssignments] = useState([])
+  const {easy,hard,medium,assignments,displayAssignments,setDisplayAssignments} = useAssignments()
+  
   const url = "http://localhost:5000";
-  useEffect(() => {
-    axios.get(`${url}/assignments`).then((res) => {
-        setDisplayAssignments(res.data)
-        setAssignments(res.data)});
-  }, []);
-
-  const easy = assignments.filter(assignment => assignment.difficultyLevel.toLowerCase() == 'easy')
-  const hard = assignments.filter(assignment => assignment.difficultyLevel.toLowerCase() == 'hard')
-  const medium = assignments.filter(assignment => assignment.difficultyLevel.toLowerCase() == 'medium')
+  const handleDelete = (userEmail,email,id) =>{
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axios.delete(`${url}/delete-assignment?userEmail=${userEmail}&&id=${id}&&email=${email}`)
+        .then(result => {
+          if(result.data.deletedCount && result.data.deletedCount > 0){
+            const remaining = displayAssignments.filter(assignment => assignment._id !== id);
+            setDisplayAssignments(remaining);
+            Swal.fire({
+              title: "Deleted!",
+              text: "Your Assignment has been deleted.",
+              icon: "success"
+            });
+          }
+          else{
+            Swal.fire({
+              
+              icon: "error",
+              title: "Oops! You can't delete this assignment",
+              showConfirmButton: false,
+              timer: 1500
+            });
+          }
+        })
+        
+      }
+    });
+  }
+  
   
   return (
     <div className="min-w-screen min-h-screen my-12 lg:px-5 md:px-5 sm:px-2 space-y-14 ">
@@ -32,6 +61,7 @@ const Assignments = () => {
           <AssignmentCard
             key={assignment._id}
             assignment={assignment}
+            handleDelete={handleDelete}
           ></AssignmentCard>
         ))}
       </div>

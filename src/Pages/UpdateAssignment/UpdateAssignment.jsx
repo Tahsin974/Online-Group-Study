@@ -57,7 +57,7 @@ const UpdateAssignment = () => {
         setUpdateAssignment(updateAssignment);
         console.log(updateAssignment);
         axios
-          .patch(
+          .put(
             `${url}/update-assignment?id=${assignmentId}`,
             updateAssignment
           )
@@ -77,16 +77,18 @@ const UpdateAssignment = () => {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen min-w-screen py-14">
+    <div className=" min-h-screen min-w-screen py-14 lg:px-5 md:px-5 sm:px-2">
       <div className="space-y-14">
         <h1 className="lg:text-3xl md:text-3xl text-2xl text-center font-semibold  pb-4">
           Update Assignment
         </h1>
-        <div className="card bg-white shrink-0 shadow-2xl">
+        <div className="card bg-blue-200  shadow-2xl">
           <form
             onSubmit={handleForm}
-            className="card-body grid grid-cols-2 gap-4"
+            className="card-body "
           >
+            <div className="grid lg:grid-cols-2 md:grid-cols-2 grid-cols-1 gap-4">
+
             <div className="form-control">
               <label className="label">
                 <span className="label-text">Your Email</span>
@@ -166,7 +168,9 @@ const UpdateAssignment = () => {
                 defaultValue={date}
               />
             </div>
-            <div className="form-control col-span-2">
+            </div>
+            
+            <div className="form-control">
               <label className="label">
                 <span className="label-text">Description</span>
               </label>
@@ -178,7 +182,7 @@ const UpdateAssignment = () => {
                 defaultValue={description || ""}
               />
             </div>
-            <div className="form-control col-span-2">
+            <div className="form-control ">
               <button className="btn btn-success text-white">
                 Update Assignment
               </button>

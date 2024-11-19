@@ -12,7 +12,6 @@ const Login = () => {
   const toggleVisibility = () => setIsVisible(!isVisible);
 
   const location = useLocation()
-  console.log(location)
 
     const {googleSignUp,setUser,userLogin} = useFirebase();
     const navigate = useNavigate();
@@ -25,7 +24,6 @@ const Login = () => {
       .then((userCredential) => {
         // Signed in 
         const user = userCredential.user;
-        console.log(user)
         // ...
         setUser(user)
         navigate(location.state ? location.state : '/home')

@@ -30,7 +30,9 @@ const AssignmentCard = ({assignment,handleDelete}) => {
             <Link to={`/update-assignment/${_id}`}>
             <button className="btn btn-success text-white">Update</button>
             </Link>
+            <Link to={`/assignment-details/${_id}`}>
             <button className="btn btn-info text-white">View</button>
+            </Link>
           </div>
         </div>
       </div>

@@ -38,7 +38,8 @@ const Registration = () => {
   };
 
   // google sign up
-  const handleGoogleSignUp = () => {
+  const handleGoogleSignUp = (e) => {
+    e.preventDefault()
     googleSignUp().then((result) => {
       const user = result.user;
       setUser(user);

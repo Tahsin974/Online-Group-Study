@@ -29,7 +29,8 @@ const Login = () => {
         navigate(location.state ? location.state : '/home')
       })
     }
-    const handleGoogleSignUp = () =>{
+    const handleGoogleSignUp = (e) =>{
+      e.preventDefault()
         googleSignUp()
         .then((result) => {
             const user = result.user;

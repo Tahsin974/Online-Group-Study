@@ -12,13 +12,14 @@ import {
 } from "@nextui-org/react";
 import { useState } from "react";
 import img from "../../../assets/logo/online-study.png";
-import { Link } from "react-router-dom";
-import useFirebase from "../../../Hooks/useFirebase";
+import { Link, useNavigate } from "react-router-dom";
+import useAuthContext from "../../../Context/useAuthContext";
 
 
 const Navbar = () => {
-  const { user, logOut, setUser } = useFirebase();
+  const { user, logOut, setUser } = useAuthContext();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const navigate = useNavigate()
 
   const menuItems = (
     <>
@@ -43,7 +44,9 @@ const Navbar = () => {
             </Link>
           </NavbarItem>
           <NavbarItem>
-            <Link className="text-gray-200 cursor-pointer">
+            <Link
+            to='/pending-assignments'
+            className="text-gray-200 cursor-pointer">
               Pending assignments
             </Link>
           </NavbarItem>
@@ -58,6 +61,7 @@ const Navbar = () => {
     e.preventDefault()
     logOut().then(() => {
       setUser();
+      navigate('/home')
     });
   };
   
@@ -106,7 +110,7 @@ const Navbar = () => {
               
               <DropdownMenu aria-label="Profile Actions" variant="flat">
               
-                <DropdownItem>My Attempted Assignments</DropdownItem>
+                <DropdownItem><Link to='/attempted-assignments' className="hover:text-red-500">My Attempted Assignments</Link></DropdownItem>
 
                 <DropdownItem>
                   <Link onClick={handleLogOut} className="hover:text-red-500">Log Out</Link>

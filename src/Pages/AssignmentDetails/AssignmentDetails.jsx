@@ -16,7 +16,7 @@ const AssignmentDetails = () => {
     });
   }, [assignmentId, url]);
 
-  if (!assignment.title && user.email) {
+  if (!assignment.title && user.email ) {
     return (
       <>
         <div className="min-h-screen flex justify-center">
@@ -26,23 +26,37 @@ const AssignmentDetails = () => {
     );
   }
 
-  const { title, description, date, marks, thumbnailImageURL } = assignment;
+  const { title, description, date, marks, thumbnailImageURL,email } = assignment;
   const formattedDate = format(new Date(date), "do MMMM yyyy");
   const handleForm = e =>{
     e.preventDefault()
     const form = e.target;
-    const userEmail = form.email.value;
+    const examineeEmail = form.email.value;
+    const name = form.name.value;
     const assignmentTitle = form.title.value;
+    const assignmentMarks = form.marks.value;
+    
     const assignmentPDFLink = form.url.value;
     const quickNote = form.quickNote.value;
     const submittedAssignment = {
-        email:userEmail,
+      examineeName: name,
+        examineeEmail,
+        email,
         title:assignmentTitle,
+        marks:assignmentMarks,
         PDF:assignmentPDFLink,
         quickNote,
+        status: "pending"
     }
     console.log(submittedAssignment)
-    // navigate('/assignments')
+
+    axios.post(`${url}/attempt-assignments`,submittedAssignment)
+    .then(res => {
+      if(res.data.insertedId){
+            navigate('/assignments')
+      }
+    })
+    // https://docs.google.com/document/d/1zeZuMhMD8i1isY0z2cH3ojP4yxKWCPALOmOeYZCyPvY/edit?usp=drive_link
 
   }
   return (
@@ -72,13 +86,26 @@ const AssignmentDetails = () => {
       <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
     </form>
                 
-              <div className="card bg-white shrink-0 shadow-2xl ">
+              <div className="card bg-blue-200 shrink-0 shadow-2xl ">
               <h1 className="text-xl font-semibold text-center py-4">Submission Form</h1>
           <form
             onSubmit={handleForm}
             className="card-body "
           >
             <div className="grid lg:grid-cols-2 md:grid-cols-2 grid-cols-1 gap-4">
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Your Name</span>
+              </label>
+              <input
+                type="text"
+                name="name"
+                placeholder="enter name"
+                className="input input-bordered"
+                defaultValue={user.displayName}
+                readOnly
+              />
+            </div>
             <div className="form-control">
               <label className="label">
                 <span className="label-text">Your Email</span>
@@ -99,14 +126,25 @@ const AssignmentDetails = () => {
               <input
                 type="text"
                 name="title"
-                placeholder="enter title"
+                readOnly
                 className="input input-bordered"
                 defaultValue={title || ""}
               />
             </div>
-            </div>
             
-
+            <div className="form-control ">
+              <label className="label">
+                <span className="label-text">Assignment Marks</span>
+              </label>
+              <input
+                type="number"
+                name="marks"
+                defaultValue={marks}
+                className="input input-bordered"
+                readOnly
+              />
+            </div>
+            </div>
             <div className="form-control ">
               <label className="label">
                 <span className="label-text">PDF/Doc Link</span>
@@ -114,11 +152,14 @@ const AssignmentDetails = () => {
               <input
                 type="url"
                 name="url"
-                
+                placeholder="enter PDF link"
                 className="input input-bordered"
                 
               />
             </div>
+            
+
+            
             <div className="form-control">
               <label className="label">
                 <span className="label-text">Quick Note</span>
@@ -126,7 +167,7 @@ const AssignmentDetails = () => {
               <textarea
                 type="text"
                 name="quickNote"
-                placeholder="enter description for assignment"
+                placeholder="enter quick note about assignment"
                 className="textarea textarea-bordered "
                 
               />

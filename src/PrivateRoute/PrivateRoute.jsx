@@ -3,7 +3,7 @@ import useAuthContext from "../Context/useAuthContext";
 
 const PrivateRoute = ({children}) => {
     const location = useLocation();
-    
+    console.log(location)
     const {user,isLoading} = useAuthContext();
     if(isLoading){
         return <>
@@ -18,7 +18,7 @@ const PrivateRoute = ({children}) => {
     }
     else{
 
-        return <Navigate to='/login' state={location.pathname} ></Navigate>
+        return <Navigate to='/login' state={location.pathname} replace></Navigate>
     }
 };
 

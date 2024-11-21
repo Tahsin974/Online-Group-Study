@@ -15,11 +15,10 @@ import img from "../../../assets/logo/online-study.png";
 import { Link, useNavigate } from "react-router-dom";
 import useAuthContext from "../../../Context/useAuthContext";
 
-
 const Navbar = () => {
   const { user, logOut, setUser } = useAuthContext();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const menuItems = (
     <>
@@ -34,7 +33,7 @@ const Navbar = () => {
         </Link>
       </NavbarItem>
       <NavbarItem>
-        <Link to="/assignments" className="text-gray-200 cursor-pointer">
+        <Link to="/contact" className="text-gray-200 cursor-pointer">
           Contact Us
         </Link>
       </NavbarItem>
@@ -50,8 +49,9 @@ const Navbar = () => {
           </NavbarItem>
           <NavbarItem>
             <Link
-            to='/pending-assignments'
-            className="text-gray-200 cursor-pointer">
+              to="/pending-assignments"
+              className="text-gray-200 cursor-pointer"
+            >
               Pending assignments
             </Link>
           </NavbarItem>
@@ -63,13 +63,13 @@ const Navbar = () => {
   );
 
   const handleLogOut = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     logOut().then(() => {
       setUser({});
-      navigate('/home')
+      navigate("/home");
     });
   };
-  
+
   return (
     <div>
       <Menubar
@@ -90,6 +90,7 @@ const Navbar = () => {
 
         <NavbarContent className="hidden lg:flex gap-4 text-lg font-semibold  justify-center ">
           {menuItems}
+          
         </NavbarContent>
 
         {user?.email ? (
@@ -97,31 +98,42 @@ const Navbar = () => {
             <Dropdown placement="bottom-end" className="bg-white ">
               <DropdownTrigger>
                 <User
-                as="button"
-                className="text-white text-xl"
+                  as="button"
+                  className="text-white text-xl"
                   name={user.displayName}
-                 
                   avatarProps={{
                     src: "https://avatars.githubusercontent.com/u/30373425?v=4",
                   }}
                 />
-                {/* <Avatar
-                  as="button"
-                  className="transition-transform"
-                  size="lg"
-                  src={userImg}
-                /> */}
+                
               </DropdownTrigger>
-              
+
               <DropdownMenu aria-label="Profile Actions" variant="flat">
-              
-                <DropdownItem><Link to='/attempted-assignments' className="hover:text-red-500">My Attempted Assignments</Link></DropdownItem>
+                <DropdownItem>
+                  <Link
+                    to="/myProfile"
+                    className="hover:text-red-500"
+                  >
+                    My Profile
+                  </Link>
+                </DropdownItem>
+                <DropdownItem>
+                  <Link
+                    to="/attempted-assignments"
+                    className="hover:text-red-500"
+                  >
+                    My Attempted Assignments
+                  </Link>
+                </DropdownItem>
 
                 <DropdownItem>
-                  <Link onClick={handleLogOut} className="hover:text-red-500">Log Out</Link>
+                  <Link onClick={handleLogOut} className="hover:text-red-500">
+                    Log Out
+                  </Link>
                 </DropdownItem>
               </DropdownMenu>
             </Dropdown>
+            
           </NavbarContent>
         ) : (
           <NavbarContent justify="end">
@@ -153,35 +165,13 @@ const Navbar = () => {
 export default Navbar;
 
 /* 
-<NavbarContent as="div" justify="end">
-        <Dropdown placement="bottom-end">
-          <DropdownTrigger>
-            <Avatar
-              isBordered
-              as="button"
-              className="transition-transform"
-              color="secondary"
-              name="Jason Hughes"
-              size="sm"
-              src="https://i.pravatar.cc/150?u=a042581f4e29026704d"
+<div className="lg:flex relative items-center hidden">
+            <span className="font-semibold">Theme Mode</span>
+            <input
+              onClick={handleTheme}
+              type="checkbox"
+              className="toggle theme-controller ml-6"
             />
-          </DropdownTrigger>
-          <DropdownMenu aria-label="Profile Actions" variant="flat">
-            <DropdownItem key="profile" className="h-14 gap-2">
-              <p className="font-semibold">Signed in as</p>
-              <p className="font-semibold">zoey@example.com</p>
-            </DropdownItem>
-            <DropdownItem key="settings">My Settings</DropdownItem>
-            <DropdownItem key="team_settings">Team Settings</DropdownItem>
-            <DropdownItem key="analytics">Analytics</DropdownItem>
-            <DropdownItem key="system">System</DropdownItem>
-            <DropdownItem key="configurations">Configurations</DropdownItem>
-            <DropdownItem key="help_and_feedback">Help & Feedback</DropdownItem>
-            <DropdownItem key="logout" color="danger">
-              Log Out
-            </DropdownItem>
-          </DropdownMenu>
-        </Dropdown>
-      </NavbarContent>
+          </div>
 
 */

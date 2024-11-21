@@ -13,10 +13,18 @@ const PendingAssignments = () => {
     axiosSecure
       .get(`/pending-assignments?status=pending&&email=${user.email}`)
       .then((res) => {
-        console.log(res.data);
+        if (!res.data) {
+          return (
+            <>
+              <div className="min-h-screen flex justify-center">
+                <span className="loading loading-ring loading-lg"></span>
+              </div>
+            </>
+          );
+        }
         setPendingAssignments(res.data);
       });
-  }, [axiosSecure,user]);
+  }, []);
   const handleForm = (event, id) => {
     event.preventDefault();
     const form = event.target;

@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 const axiosInstance = axios.create({
     baseURL:'https://online-group-study-server-seven.vercel.app',
+    
     withCredentials:true
 })
 const useAxiosSecure = () => {
@@ -16,7 +17,9 @@ const useAxiosSecure = () => {
             return res;
         },(error)=>{
             if(error.response.status == 401 || error.response.status == 403){
+                console.log("logOut")
                 logOut().then(() => {
+                    
                     setUser({});
                     navigate('/login')
                   });

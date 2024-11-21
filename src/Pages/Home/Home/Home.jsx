@@ -5,6 +5,7 @@ import Features from "../Features/Features";
 
 
 const Home = () => {
+    
     return (
         <div className="min-w-screen">
             <Banner></Banner>

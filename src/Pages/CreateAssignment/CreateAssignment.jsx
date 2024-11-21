@@ -1,12 +1,12 @@
-import useFirebase from "../../Hooks/useFirebase";
 import { useNavigate } from "react-router-dom";
 import Swal from 'sweetalert2'
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import useAuthContext from "../../Context/useAuthContext";
 
 
 
 const CreateAssignment = () => {
-  const {user} = useFirebase();
+  const {user} = useAuthContext();
   const navigate = useNavigate()
   const axiosSecure = useAxiosSecure();
 

@@ -12,7 +12,7 @@ const Login = () => {
   const toggleVisibility = () => setIsVisible(!isVisible);
 
   const location = useLocation()
-
+console.log(location)
     const {googleSignUp,setUser,userLogin} = useAuthContext();
     const navigate = useNavigate();
     const handleLogin = (e) =>{
@@ -35,7 +35,7 @@ const Login = () => {
         .then((result) => {
             const user = result.user;
             setUser(user)
-            navigate('/home')
+            navigate(location.state ? location.state : '/home')
             
           })
     }

@@ -1,7 +1,7 @@
 import FAQ from '../../../assets/images/FAQ.jpg'
 const Faq = () => {
   return (
-    <div className="my-32 space-y-11">
+    <div id='faq' className="my-32 space-y-11">
         <h1 className="lg:text-5xl md:text-5xl text-3xl text-center font-bold">Frequently Ask Questions</h1>
         <div className="hero">
   <div className="hero-content flex-col lg:flex-row">

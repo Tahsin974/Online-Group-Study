@@ -16,13 +16,15 @@ import axios from "axios";
 
 initializeAuthentication();
 const useFirebase = () => {
-  const [user, setUser] = useState();
+  const [user, setUser] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   
   
   const auth = getAuth();
 
   const url = 'https://online-group-study-server-seven.vercel.app';
+  
+  
 
   const googleSignUp = () => {
     const googleProvider = new GoogleAuthProvider();
@@ -75,7 +77,7 @@ const useFirebase = () => {
       if (currentUser) {
         
         axios.post(`${url}/jwt`,loggedUser,{withCredentials:true})
-        .then(res => console.log('Token from server',res.data))
+        .then(res => console.log(res.data))
       }
       else{
         axios.post(`${url}/logOut`,loggedUser,{withCredentials:true})
@@ -85,7 +87,7 @@ const useFirebase = () => {
     });
 
     return () => unSubscribed;
-  }, []);
+  }, [auth,user]);
 
   return {
     googleSignUp,

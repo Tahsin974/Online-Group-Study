@@ -43,7 +43,7 @@ const Registration = () => {
     googleSignUp().then((result) => {
       const user = result.user;
       setUser(user);
-      navigate("/home");
+      navigate(location.state ? location.state : '/home');
     });
   };
 

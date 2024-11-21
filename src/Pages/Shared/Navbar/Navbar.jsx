@@ -33,6 +33,11 @@ const Navbar = () => {
           Assignments
         </Link>
       </NavbarItem>
+      <NavbarItem>
+        <Link to="/assignments" className="text-gray-200 cursor-pointer">
+          Contact Us
+        </Link>
+      </NavbarItem>
       {user?.email ? (
         <>
           <NavbarItem>
@@ -60,7 +65,7 @@ const Navbar = () => {
   const handleLogOut = (e) => {
     e.preventDefault()
     logOut().then(() => {
-      setUser();
+      setUser({});
       navigate('/home')
     });
   };

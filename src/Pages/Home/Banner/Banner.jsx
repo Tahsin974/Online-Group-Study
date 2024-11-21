@@ -12,6 +12,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { Autoplay, Pagination} from "swiper/modules";
+import { Link } from "react-router-dom";
 
 const Banner = () => {
   return (
@@ -48,9 +49,9 @@ const Banner = () => {
                   </q>
                 </p>
                 <div className="flex justify-center">
-                  <button className="btn lg:btn-md md:btn-md btn-sm btn-outline  border-cyan-500 hover:bg-cyan-500 hover:border-cyan-500 text-cyan-400  hover:text-white lg:mt-10 md:my-10">
+                  <Link to="/login"><button className="btn lg:btn-md md:btn-md btn-sm btn-outline  border-cyan-500 hover:bg-cyan-500 hover:border-cyan-500 text-cyan-400  hover:text-white lg:mt-10 md:my-10">
                     Sign Up for Free
-                  </button>
+                  </button></Link>
                 </div>
               </div>
             </div>
@@ -73,9 +74,9 @@ const Banner = () => {
                   </q>
                 </p>
                 <div className="flex justify-center">
-                  <button className="btn lg:btn-md md:btn-md btn-sm btn-outline  border-cyan-500 hover:bg-cyan-500 hover:border-cyan-500 text-cyan-400  hover:text-white lg:mt-10 md:my-10">
+                  <Link to="/login"><button className="btn lg:btn-md md:btn-md btn-sm btn-outline  border-cyan-500 hover:bg-cyan-500 hover:border-cyan-500 text-cyan-400  hover:text-white lg:mt-10 md:my-10">
                     Sign Up for Free
-                  </button>
+                  </button></Link>
                 </div>
               </div>
             </div>
@@ -98,9 +99,9 @@ const Banner = () => {
                   </q>
                 </p>
                 <div className="flex justify-center">
-                  <button className="btn lg:btn-md md:btn-md btn-sm btn-outline  border-cyan-500 hover:bg-cyan-500 hover:border-cyan-500 text-cyan-400  hover:text-white lg:mt-10 md:my-10">
+                  <Link to="/login"><button className="btn lg:btn-md md:btn-md btn-sm btn-outline  border-cyan-500 hover:bg-cyan-500 hover:border-cyan-500 text-cyan-400  hover:text-white lg:mt-10 md:my-10">
                     Sign Up for Free
-                  </button>
+                  </button></Link>
                 </div>
               </div>
             </div>
@@ -124,9 +125,9 @@ const Banner = () => {
                   </q>
                 </p>
                 <div className="flex justify-center">
-                  <button className="btn lg:btn-md md:btn-md btn-sm btn-outline  border-cyan-500 hover:bg-cyan-500 hover:border-cyan-500 text-cyan-400  hover:text-white lg:mt-10 md:my-10">
+                  <Link to="/login"><button className="btn lg:btn-md md:btn-md btn-sm btn-outline  border-cyan-500 hover:bg-cyan-500 hover:border-cyan-500 text-cyan-400  hover:text-white lg:mt-10 md:my-10">
                     Sign Up for Free
-                  </button>
+                  </button></Link>
                 </div>
               </div>
             </div>

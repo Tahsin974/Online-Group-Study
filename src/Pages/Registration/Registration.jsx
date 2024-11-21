@@ -1,10 +1,10 @@
 import { FcGoogle } from "react-icons/fc";
 import img from "../../assets/images/login.png";
-import useFirebase from "../../Hooks/useFirebase";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { HiMiniEyeSlash } from "react-icons/hi2";
 import { TbEyeFilled } from "react-icons/tb";
+import useAuthContext from "../../Context/useAuthContext";
 const Registration = () => {
   // eye icon toggle
   const [isVisible, setIsVisible] = useState(false);
@@ -13,7 +13,7 @@ const Registration = () => {
   const location = useLocation()
   
 
-  const { googleSignUp, setUser, createUser, setUserName } = useFirebase();
+  const { googleSignUp, setUser, createUser, setUserName } = useAuthContext();
 
   const navigate = useNavigate();
 
@@ -94,7 +94,7 @@ const Registration = () => {
                   <input
                     type={isVisible ? "text" : "password"}
                     placeholder="password"
-                    className="input input-bordered w-[100%]"
+                    className="input input-bordered w-[100%] bg-white text-black"
                     name="password"
                     required
                   />

@@ -1,14 +1,14 @@
-import axios from "axios";
 import useFirebase from "../../Hooks/useFirebase";
 import { useNavigate } from "react-router-dom";
 import Swal from 'sweetalert2'
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 
 
 const CreateAssignment = () => {
   const {user} = useFirebase();
-  const url = "http://localhost:5000";
   const navigate = useNavigate()
+  const axiosSecure = useAxiosSecure();
 
   const handleForm = e =>{
     e.preventDefault();
@@ -24,7 +24,7 @@ const CreateAssignment = () => {
     const newAssignment = {
       title,email,thumbnailImageURL,marks,difficultyLevel,date,description
     }
-    axios.post(`${url}/new-assignment`,newAssignment)
+    axiosSecure.post(`/new-assignment`,newAssignment)
     .then(res => {
       console.log(res.data)
       
@@ -59,7 +59,7 @@ const CreateAssignment = () => {
               type="email"
               name="email"
               placeholder="enter title"
-              className="input input-bordered"
+              className="input input-bordered bg-white text-black"
               defaultValue={user ? user.email : " "}
             />
           </div>
@@ -71,7 +71,7 @@ const CreateAssignment = () => {
               type="text"
               name="title"
               placeholder="enter title"
-              className="input input-bordered"
+              className="input input-bordered bg-white text-black"
               required
             />
           </div>
@@ -83,7 +83,7 @@ const CreateAssignment = () => {
               type="url"
               name="url"
               placeholder="enter url"
-              className="input input-bordered"
+              className="input input-bordered bg-white text-black"
               required
             />
           </div>
@@ -96,7 +96,7 @@ const CreateAssignment = () => {
               type="number"
               name="marks"
               placeholder="enter marks"
-              className="input input-bordered"
+              className="input input-bordered bg-white text-black"
               required
             />
           </div>
@@ -107,7 +107,7 @@ const CreateAssignment = () => {
             </label>
             <select
             name="difficultyLevel"
-            className="select  select-bordered">
+            className="select  select-bordered bg-white text-black">
               {/* <option disabled selected>
                 Pick Difficulty Level
               </option> */}
@@ -125,7 +125,7 @@ const CreateAssignment = () => {
               type="date"
               name="date"
               placeholder="enter marks"
-              className="input input-bordered"
+              className="input input-bordered bg-white text-black"
               
               required
             />
@@ -141,7 +141,7 @@ const CreateAssignment = () => {
               type="text"
               name="description"
               placeholder="enter description for assignment"
-              className="textarea textarea-bordered "
+              className="textarea textarea-bordered bg-white text-black"
               required
             />
           </div>

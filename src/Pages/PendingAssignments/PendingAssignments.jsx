@@ -1,22 +1,22 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import PendingAssignmentCard from "./PendingAssignmentCard";
 import { useNavigate } from "react-router-dom";
 import useAuthContext from "../../Context/useAuthContext";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 const PendingAssignments = () => {
   const [pendingAssignments, setPendingAssignments] = useState([]);
   const navigate = useNavigate();
   const { user } = useAuthContext();
-  const url = "http://localhost:5000";
+  const axiosSecure = useAxiosSecure();
   useEffect(() => {
-    axios
-      .get(`${url}/pending-assignments?status=pending&&email=${user.email}`)
+    axiosSecure
+      .get(`/pending-assignments?status=pending&&email=${user.email}`)
       .then((res) => {
         console.log(res.data);
         setPendingAssignments(res.data);
       });
-  }, []);
+  }, [axiosSecure,user]);
   const handleForm = (event, id) => {
     event.preventDefault();
     const form = event.target;
@@ -28,9 +28,7 @@ const PendingAssignments = () => {
       feedback,
       status,
     };
-    console.log(updatePendingAssignment);
-    axios
-      .put(`${url}/update-pending-assignment?id=${id}`, updatePendingAssignment)
+    axiosSecure.put(`/update-pending-assignment?id=${id}`, updatePendingAssignment)
       .then((result) => {
         if (result.data.modifiedCount > 0) {
           navigate("/home");

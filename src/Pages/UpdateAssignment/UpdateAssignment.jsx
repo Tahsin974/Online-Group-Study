@@ -1,18 +1,18 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import axios from "axios";
 import Swal from "sweetalert2";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 const UpdateAssignment = () => {
   const { assignmentId } = useParams();
   const navigate = useNavigate();
   const [updateAssignment, setUpdateAssignment] = useState({});
-  const url = "http://localhost:5000";
+  const axiosSecure = useAxiosSecure();
   useEffect(() => {
-    axios.get(`${url}/assignment?id=${assignmentId}`).then((res) => {
+    axiosSecure.get(`/assignment?id=${assignmentId}`).then((res) => {
       setUpdateAssignment(res.data);
     });
-  }, [assignmentId]);
+  }, [assignmentId,axiosSecure]);
 
   if (!updateAssignment.title) {
     return (
@@ -56,11 +56,8 @@ const UpdateAssignment = () => {
         updateAssignment.description = form.description.value;
         setUpdateAssignment(updateAssignment);
         console.log(updateAssignment);
-        axios
-          .put(
-            `${url}/update-assignment?id=${assignmentId}`,
-            updateAssignment
-          )
+        axiosSecure
+          .put(`/update-assignment?id=${assignmentId}`, updateAssignment)
           .then((res) => {
             if (res.data.modifiedCount > 0) {
               Swal.fire({
@@ -83,93 +80,89 @@ const UpdateAssignment = () => {
           Update Assignment
         </h1>
         <div className="card bg-blue-200  shadow-2xl">
-          <form
-            onSubmit={handleForm}
-            className="card-body "
-          >
+          <form onSubmit={handleForm} className="card-body ">
             <div className="grid lg:grid-cols-2 md:grid-cols-2 grid-cols-1 gap-4">
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Your Email</span>
+                </label>
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="enter email"
+                  className="input input-bordered bg-white text-black"
+                  defaultValue={email || " "}
+                  readOnly
+                />
+              </div>
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Assignment Title</span>
+                </label>
+                <input
+                  type="text"
+                  name="title"
+                  placeholder="enter title"
+                  className="input input-bordered bg-white text-black"
+                  defaultValue={title || ""}
+                />
+              </div>
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Thumbnail Image URL</span>
+                </label>
+                <input
+                  type="url"
+                  name="url"
+                  placeholder="enter url"
+                  className="input input-bordered bg-white text-black"
+                  defaultValue={thumbnailImageURL || ""}
+                />
+              </div>
 
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text">Your Email</span>
-              </label>
-              <input
-                type="email"
-                name="email"
-                placeholder="enter email"
-                className="input input-bordered"
-                defaultValue={email || " "}
-                readOnly
-              />
-            </div>
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text">Assignment Title</span>
-              </label>
-              <input
-                type="text"
-                name="title"
-                placeholder="enter title"
-                className="input input-bordered"
-                defaultValue={title || ""}
-              />
-            </div>
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text">Thumbnail Image URL</span>
-              </label>
-              <input
-                type="url"
-                name="url"
-                placeholder="enter url"
-                className="input input-bordered"
-                defaultValue={thumbnailImageURL || ""}
-              />
-            </div>
-
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text">Assignment Marks</span>
-              </label>
-              <input
-                type="number"
-                name="marks"
-                placeholder="enter marks"
-                className="input input-bordered"
-                defaultValue={marks || 0}
-              />
-            </div>
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text">Difficulty Level</span>
-              </label>
-              <select
-                name="difficultyLevel"
-                className="select  select-bordered"
-                defaultValue={difficultyLevel}
-              >
-                {/* <option disabled selected>
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Assignment Marks</span>
+                </label>
+                <input
+                  type="number"
+                  name="marks"
+                  placeholder="enter marks"
+                  className="input input-bordered bg-white text-black"
+                  defaultValue={marks || 0}
+                />
+              </div>
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Difficulty Level</span>
+                </label>
+                <select
+                  name="difficultyLevel"
+                  className="select  select-bordered bg-white text-black"
+                  defaultValue={difficultyLevel}
+                >
+                  {/* <option disabled selected>
                 Pick Difficulty Level
               </option> */}
-                <option>Easy</option>
-                <option>Medium</option>
-                <option>Hard</option>
-              </select>
+                  <option>Easy</option>
+                  <option>Medium</option>
+                  <option>Hard</option>
+                </select>
+              </div>
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Assignment Date</span>
+                </label>
+                <input
+                  type="date"
+                  name="date"
+                  placeholder="enter marks"
+                  className="input input-bordered bg-white text-black"
+                  defaultValue={date}
+                />
+              </div>
             </div>
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text">Assignment Date</span>
-              </label>
-              <input
-                type="date"
-                name="date"
-                placeholder="enter marks"
-                className="input input-bordered"
-                defaultValue={date}
-              />
-            </div>
-            </div>
-            
+
             <div className="form-control">
               <label className="label">
                 <span className="label-text">Description</span>
@@ -178,7 +171,7 @@ const UpdateAssignment = () => {
                 type="text"
                 name="description"
                 placeholder="enter description for assignment"
-                className="textarea textarea-bordered "
+                className="textarea textarea-bordered bg-white text-black"
                 defaultValue={description || ""}
               />
             </div>

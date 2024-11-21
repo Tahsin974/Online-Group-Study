@@ -1,22 +1,22 @@
-import axios from "axios";
 import { format } from "date-fns";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import useAuthContext from "../../Context/useAuthContext";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 const AssignmentDetails = () => {
   const { assignmentId } = useParams();
   const [assignment, setAssignment] = useState({});
   const {user} = useAuthContext();
   const navigate = useNavigate();
-  const url = "http://localhost:5000";
+  const axiosSecure = useAxiosSecure();
   useEffect(() => {
-    axios.get(`${url}/assignment-details/${assignmentId}`).then((result) => {
+    axiosSecure.get(`/assignment-details/${assignmentId}`).then((result) => {
       setAssignment(result.data);
     });
-  }, [assignmentId, url]);
+  }, [assignmentId,axiosSecure]);
 
-  if (!assignment.title && user.email ) {
+  if (!assignment.title && user?.email ) {
     return (
       <>
         <div className="min-h-screen flex justify-center">
@@ -50,7 +50,7 @@ const AssignmentDetails = () => {
     }
     console.log(submittedAssignment)
 
-    axios.post(`${url}/attempt-assignments`,submittedAssignment)
+    axiosSecure.post(`/attempt-assignments`,submittedAssignment)
     .then(res => {
       if(res.data.insertedId){
             navigate('/assignments')
@@ -101,7 +101,7 @@ const AssignmentDetails = () => {
                 type="text"
                 name="name"
                 placeholder="enter name"
-                className="input input-bordered"
+                className="input input-bordered bg-white text-black"
                 defaultValue={user.displayName}
                 readOnly
               />
@@ -114,7 +114,7 @@ const AssignmentDetails = () => {
                 type="email"
                 name="email"
                 placeholder="enter email"
-                className="input input-bordered"
+                className="input input-bordered bg-white text-black"
                 defaultValue={user.email || " "}
                 readOnly
               />
@@ -127,7 +127,7 @@ const AssignmentDetails = () => {
                 type="text"
                 name="title"
                 readOnly
-                className="input input-bordered"
+                className="input input-bordered bg-white text-black"
                 defaultValue={title || ""}
               />
             </div>
@@ -140,7 +140,7 @@ const AssignmentDetails = () => {
                 type="number"
                 name="marks"
                 defaultValue={marks}
-                className="input input-bordered"
+                className="input input-bordered bg-white text-black"
                 readOnly
               />
             </div>
@@ -153,7 +153,7 @@ const AssignmentDetails = () => {
                 type="url"
                 name="url"
                 placeholder="enter PDF link"
-                className="input input-bordered"
+                className="input input-bordered bg-white text-black"
                 
               />
             </div>
@@ -168,7 +168,7 @@ const AssignmentDetails = () => {
                 type="text"
                 name="quickNote"
                 placeholder="enter quick note about assignment"
-                className="textarea textarea-bordered "
+                className="textarea textarea-bordered bg-white text-black"
                 
               />
             </div>

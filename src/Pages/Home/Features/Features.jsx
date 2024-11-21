@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import FeatureCard from "./FeatureCard";
-import axios from "axios";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 
 const Features = () => {
     const [features,setFeatures] = useState([]);
-    const url = "http://localhost:5000";
+    const axiosSecure = useAxiosSecure();
     useEffect(()=>{
-        axios.get(`${url}/features`)
+        axiosSecure.get(`/features`)
         .then(res => setFeatures(res.data));
     },[])
     return (

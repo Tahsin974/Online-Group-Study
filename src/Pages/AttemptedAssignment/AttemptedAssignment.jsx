@@ -1,19 +1,19 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import useAuthContext from "../../Context/useAuthContext";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 const AttemptedAssignment = () => {
   const [attemptAssignments, setAttemptAssignments] = useState([]);
   const { user } = useAuthContext();
   const url = "http://localhost:5000";
-
+  const axiosSecure = useAxiosSecure();
   useEffect(() => {
-    axios
-      .get(`${url}/attempted-assignments?email=${user.email}`)
+    axiosSecure
+      .get(`/attempted-assignments?email=${user?.email}`)
       .then((result) => {
         setAttemptAssignments(result.data);
       });
-  }, [url, user]);
+  }, [url, user,axiosSecure]);
   console.log(attemptAssignments);
   return (
     <div>

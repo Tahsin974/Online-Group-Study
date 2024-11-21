@@ -2,12 +2,12 @@
 import AssignmentCard from "./AssignmentCard";
 import Swal from "sweetalert2";
 import useAssignments from "../../Hooks/useAssignments";
-import axios from "axios";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 const Assignments = () => {
   const {easy,hard,medium,assignments,displayAssignments,setDisplayAssignments} = useAssignments()
+  const axiosSecure = useAxiosSecure();
   
-  const url = "http://localhost:5000";
   const handleDelete = (userEmail,email,id) =>{
     Swal.fire({
       title: "Are you sure?",
@@ -19,7 +19,7 @@ const Assignments = () => {
       confirmButtonText: "Yes, delete it!"
     }).then((result) => {
       if (result.isConfirmed) {
-        axios.delete(`${url}/delete-assignment?userEmail=${userEmail}&&id=${id}&&email=${email}`)
+        axiosSecure.delete(`/delete-assignment?userEmail=${userEmail}&&id=${id}&&email=${email}`)
         .then(result => {
           if(result.data.deletedCount && result.data.deletedCount > 0){
             const remaining = displayAssignments.filter(assignment => assignment._id !== id);
@@ -50,10 +50,10 @@ const Assignments = () => {
     <div className="min-w-screen min-h-screen my-12 lg:px-5 md:px-5 sm:px-2 space-y-14 ">
       <h1 className="lg:text-5xl md:text-5xl text-3xl text-center font-bold">Assignments</h1>
       <div className="space-x-4 flex justify-center">
-        <button onClick={() => setDisplayAssignments(assignments)} className="btn lg:w-24 md:btn-md sm:btn-sm btn-xs btn-neutral">All</button>
-        <button onClick={() => setDisplayAssignments(easy)} className="btn lg:w-24 md:btn-md sm:btn-sm btn-xs btn-neutral">Easy</button>
-        <button onClick={() => setDisplayAssignments(hard)} className="btn lg:w-24 md:btn-md sm:btn-sm btn-xs btn-neutral">Hard</button>
-        <button onClick={() => setDisplayAssignments(medium)} className="btn lg:w-24 md:btn-md sm:btn-sm btn-xs btn-neutral">Medium</button>
+        <button onClick={() => setDisplayAssignments(assignments)} className="btn lg:w-24 md:btn-md sm:btn-sm btn-xs btn-neutral text-white">All</button>
+        <button onClick={() => setDisplayAssignments(easy)} className="btn lg:w-24 md:btn-md sm:btn-sm btn-xs btn-neutral text-white">Easy</button>
+        <button onClick={() => setDisplayAssignments(hard)} className="btn lg:w-24 md:btn-md sm:btn-sm btn-xs btn-neutral text-white">Hard</button>
+        <button onClick={() => setDisplayAssignments(medium)} className="btn lg:w-24 md:btn-md sm:btn-sm btn-xs btn-neutral text-white">Medium</button>
       </div>
 
       <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4 justify-items-center">

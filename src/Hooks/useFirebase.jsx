@@ -11,23 +11,27 @@ import {
   updateProfile,
  
 } from "firebase/auth";
+import axios from "axios";
+
 
 initializeAuthentication();
 const useFirebase = () => {
-  const [user, setUser] = useState({});
-  const [isLoading, setIsLoading] = useState(false);
+  const [user, setUser] = useState();
+  const [isLoading, setIsLoading] = useState(true);
   
   
   const auth = getAuth();
 
+  const url = 'https://online-group-study-server-seven.vercel.app';
+
   const googleSignUp = () => {
     const googleProvider = new GoogleAuthProvider();
-    setIsLoading(false);
+    setIsLoading(true);
     return signInWithPopup(auth, googleProvider);
   };
 
   const createUser = (email,password) =>{
-    setIsLoading(false)
+    setIsLoading(true)
     return createUserWithEmailAndPassword(auth, email, password)
     
   
@@ -35,7 +39,7 @@ const useFirebase = () => {
   }
 
   const setUserName = (displayName) =>{
-    setIsLoading(false);
+    
     updateProfile(auth.currentUser, {
       displayName,
     }).then(() => {
@@ -46,7 +50,7 @@ const useFirebase = () => {
   }
 
   const userLogin = (email,password) =>{
-    setIsLoading(false);
+    setIsLoading(true);
     return signInWithEmailAndPassword(auth, email, password)
   
   }
@@ -55,15 +59,28 @@ const useFirebase = () => {
 
   
   const logOut = () => {
-    setIsLoading(false);
+    setIsLoading(true);
     return signOut(auth);
   };
 
   useEffect(() => {
-    const unSubscribed = onAuthStateChanged(auth, (user) => {
-      setIsLoading(true);
-      if (user) {
-        setUser(user);
+    const unSubscribed = onAuthStateChanged(auth, (currentUser) => {
+      const userEmail = currentUser?.email || user?.email;
+      const loggedUser = {email:userEmail}
+      
+      
+      setUser(currentUser);
+      setIsLoading(false);
+      
+      if (currentUser) {
+        
+        axios.post(`${url}/jwt`,loggedUser,{withCredentials:true})
+        .then(res => console.log('Token from server',res.data))
+      }
+      else{
+        axios.post(`${url}/logOut`,loggedUser,{withCredentials:true})
+        .then(res => console.log(res.data))
+      
       }
     });
 

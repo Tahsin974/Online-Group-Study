@@ -1,15 +1,15 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
+import useAxiosSecure from "./useAxiosSecure";
 
 const useAssignments = () => {
     const [assignments, setAssignments] = useState([]);
   const [displayAssignments,setDisplayAssignments] = useState([]);
-  const url = "http://localhost:5000";
+  const axiosSecure = useAxiosSecure();
   useEffect(() => {
-    axios.get(`${url}/assignments`).then((res) => {
+    axiosSecure.get(`/assignments`).then((res) => {
         setDisplayAssignments(res.data)
         setAssignments(res.data)});
-  }, []);
+  }, [axiosSecure]);
 
   const easy = assignments.filter(assignment => assignment.difficultyLevel.toLowerCase() == 'easy')
   const hard = assignments.filter(assignment => assignment.difficultyLevel.toLowerCase() == 'hard')

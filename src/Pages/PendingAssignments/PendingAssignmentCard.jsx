@@ -45,7 +45,7 @@ const PendingAssignmentCard = ({ assignment,handleForm }) => {
                           type="number"
                           name="marks"
                           placeholder="enter marks"
-                          className="input input-bordered"
+                          className="input input-bordered bg-white text-black"
                           required
                         />
                       </div>
@@ -57,7 +57,7 @@ const PendingAssignmentCard = ({ assignment,handleForm }) => {
                           type="text"
                           name="feedback"
                           placeholder="feedback for examinee"
-                          className="textarea textarea-bordered "
+                          className="textarea textarea-bordered bg-white text-black"
                           required
                         />
                       </div>
